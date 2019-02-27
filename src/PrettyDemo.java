@@ -28,7 +28,7 @@ public class PrettyDemo
 	private static void prettyC()
 	{
 		PrettyScore ps = new PrettyScore("Pretty ,Pretty, Pretty");
-		ps.addInstrument(ProgramChanges.PIANO, 0);
+		ps.addInstrument(Instruments.PIANO, 0);
 		ps.instruments.get(0).addNote(48, Durations.C);
 		ps.endScore();
 		String name = "Pretty.mid";
