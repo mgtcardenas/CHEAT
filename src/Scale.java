@@ -38,7 +38,6 @@ public class Scale
 	 * to put it in the objects' notes
 	 *
 	 * @param scaleNames - the names of all the scales as a variable length argument
-	 *
 	 * @throws IOException - if the file is not found
 	 */
 	public Scale(String... scaleNames) throws IOException
@@ -59,7 +58,6 @@ public class Scale
 	 * the user wants to have randomly chosen from all possible scales
 	 *
 	 * @param numScales - how many number of scales from all possible scales
-	 *
 	 * @throws IOException - if the file is not found
 	 */
 	public Scale(int numScales) throws IOException
@@ -121,7 +119,6 @@ public class Scale
 	 *
 	 * @param targetName - the name of the scale that will be searched in the file
 	 * @param i          - the index for the data field's array
-	 *
 	 * @throws IOException - if the file is not found
 	 */
 	private void fetchData(String targetName, int i) throws IOException
@@ -150,7 +147,6 @@ public class Scale
 	 * Initializes the objects' data field with 'i' random numbers
 	 *
 	 * @param i - how many random number of scales will compose the notes
-	 *
 	 * @throws IOException - if the file is not found
 	 */
 	private void fetchData(int i) throws IOException
@@ -227,4 +223,28 @@ public class Scale
 			this.chords.add(tmpChordNotes);
 		}//end for - j
 	}//end setNotes
+
+	public int getRandomNote(boolean octaves)
+	{
+		if (octaves)
+		{
+			int pitch  = this.notes.get((int) (Math.random() * this.notes.size()));
+			int octave = 0;
+
+			if (Math.random() > 0.5)
+				octave *= -1;
+
+			if   (Math.random() > 0.5)
+			    octave = 12;
+			else
+			    octave = 24;
+
+			return pitch + octave;
+		}
+		else
+		{
+			return this.notes.get((int) (Math.random() * this.notes.size()));
+		}//end if - else
+
+	}//end getRandomNote
 }//end Scale - class

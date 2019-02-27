@@ -21,8 +21,6 @@ public class Inst
 		midiPath  = dir + "/" + songName + ".mid";
 		wavPath   = dir + "/" + songName + ".wav";
 
-//		SourceTest.test(midiPath);
-
 		soundBank  = new File(soundFont);
 		midiFile   = new File(midiPath );
 		outputFile = new File(wavPath  );
