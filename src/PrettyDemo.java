@@ -52,21 +52,21 @@ public class PrettyDemo
 
 	private static void randomDurations()
 	{
-		PrettyScore ps = new PrettyScore("Stochy");
+		PrettyScore ps = new PrettyScore("random-durations");
 		ps.addInstrument(ProgramChanges.ACCORDION, 5);
 
 		for (int i = 0; i < 24; i++)
 			ps.instruments.get(0).addNote((int) (Math.random() * 128), getRandomDuration(2));
 
 		ps.endScore();
-		String name = "Stochy.mid";
+		String name = "random-durations.mid";
 		ps.save(name);
 		Play.mid(name);
 	}//end randomDurations
 
 	private static void addInstruments()
 	{
-		PrettyScore ps = new PrettyScore("Stochy");
+		PrettyScore ps = new PrettyScore("addInstruments");
 		ps.addInstrument(ProgramChanges.ACCORDION, 5     );
 		ps.addInstrument(ProgramChanges.ALTO_SAXOPHONE, 5);
 
@@ -77,28 +77,28 @@ public class PrettyDemo
 		}//end for - i
 
 		ps.endScore();
-		String name = "Stochy.mid";
+		String name = "addInstruments.mid";
 		ps.save(name);
 		Play.mid(name);
 	}//end addInstruments
 
 	private static void addChords()
 	{
-		PrettyScore ps = new PrettyScore("Stochy");
+		PrettyScore ps = new PrettyScore("addChords");
 		ps.addInstrument(ProgramChanges.ACCORDION, 5);
 
 		for (int i = 0; i < 24; i++)
 			ps.instruments.get(0).addChord(Durations.QUAVER, 48, 50, 55, 60);
 
 		ps.endScore();
-		String name = "Stochy.mid";
+		String name = "addChords.mid";
 		ps.save(name);
 		Play.mid(name);
 	}//end addChords
 
 	private static void addScale() throws IOException
 	{
-		PrettyScore ps = new PrettyScore("Stochy");
+		PrettyScore ps = new PrettyScore("addScale");
 		ps.addInstrument(ProgramChanges.ACCORDION, 5);
 		Scale myScale = new Scale("scale_c_ionian");
 
@@ -106,16 +106,15 @@ public class PrettyDemo
 			ps.instruments.get(0).addNote(myScale.getRandomNote(true), getRandomDuration(2));
 
 		ps.endScore();
-		String name = "Stochy.mid";
+		String name = "addScale.mid";
 		ps.save(name);
 		Play.mid(name);
 	}//end addScale
 
 	private static void blues() throws IOException
 	{
-		PrettyScore ps = new PrettyScore("Stochy");
+		PrettyScore ps = new PrettyScore("blues");
 		ps.addInstrument(ProgramChanges.PIANO, 5);
-		//		ps.addInstrument(ProgramChanges.ACCORDION, 5);
 		ps.selectScale("scale_d_blues");
 
 		ps.instruments.get(0).addChord(LONGDURATION, ps.getChord(0)[0]                    );
@@ -139,21 +138,20 @@ public class PrettyDemo
 		bluesCompass(ps, bassSubDominant, highSubDominant, 1);
 		bluesCompass(ps, bassTonic, highTonic, 2            );
 
-
 		ps.addInstrument(ProgramChanges.PIANO, 2);
 		ps.instruments.get(1).addSilence(getRandomDuration(1));
 
 		for (int i = 0; i < 32; i++)
 		{
-			if(Math.random() > 0.8)
-				ps.instruments.get(1).addSilence(getRandomDuration(1));
+			if   (Math.random() > 0.8)
+			    ps.instruments.get(1).addSilence(getRandomDuration(1));
 			else
-				ps.instruments.get(1).addNote(ps.getRandomNote(true), getRandomDuration(3));
-
+			    ps.instruments.get(1).addNote(ps.getRandomNote(true), getRandomDuration(3));
 		}//end for - i
 
 		ps.endScore();
-		String name = "Stochy.mid";
+
+		String name = "blues.mid";
 		ps.save(name);
 		Play.mid(name);
 	}//end blues
@@ -162,8 +160,8 @@ public class PrettyDemo
 	{
 		for (int i = 0; i < times; i++)
 		{
-			ps.instruments.get(0).addChord(LONGDURATION, bass);
-			ps.instruments.get(0).addChord(SHORTDURATION, bass);
+			ps.instruments.get(0).addChord(LONGDURATION, bass  );
+			ps.instruments.get(0).addChord(SHORTDURATION, bass );
 			ps.instruments.get(0).addChord(LONGDURATION, highs );
 			ps.instruments.get(0).addChord(SHORTDURATION, highs);
 		}//end for - i

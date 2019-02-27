@@ -7,12 +7,12 @@ import java.util.List;
 
 public class PrettyScore
 {
-	List<PrettyInstrument> instruments = new ArrayList<PrettyInstrument>();
-	Score                  score;
-	Scale                  scale;
-	public int[]   tonic;
-	public int[]   subDominant;
-	public int[]   dominant;
+	       List<PrettyInstrument> instruments = new ArrayList<>();
+	       Score                  score;
+	       Scale                  scale;
+	public int[]                  tonic;
+	public int[]                  subDominant;
+	public int[]                  dominant;
 
 	public Scale getScale()
 	{
@@ -32,9 +32,7 @@ public class PrettyScore
 	public void endScore()
 	{
 		for (PrettyInstrument pi : instruments)
-		{
 			score.addPart(pi.returnPart());
-		}//end foreach
 	}//end endScore
 
 	public void save(String name)
@@ -44,10 +42,10 @@ public class PrettyScore
 
 	public void selectScale(String scaleName) throws IOException
 	{
-		scale = new Scale(scaleName);
-		tonic           = scale.getChords().get(0);
-		subDominant     = scale.getChords().get(2);
-		dominant        = scale.getChords().get(4);
+		scale       = new Scale(scaleName);
+		tonic       = scale.getChords().get(0);
+		subDominant = scale.getChords().get(2);
+		dominant    = scale.getChords().get(4);
 	}//end selectScale
 
 	public int getRandomNote(boolean octaves)
@@ -58,6 +56,5 @@ public class PrettyScore
 	public int[] getChord(int i)
 	{
 		return scale.getChords().get(i);
-	}//end getCh
-
+	}//end getChord
 }//end PrettyScore - class

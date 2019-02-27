@@ -4,10 +4,10 @@ import jm.music.data.*;
 
 public class PrettyInstrument
 {
-	Part   instrument;
-	Phrase phrase;
+	Part    instrument;
+	Phrase  phrase;
 	CPhrase cPhrase;
-	double instant;
+	double  instant;
 
 	public double getInstant()
 	{
@@ -18,13 +18,13 @@ public class PrettyInstrument
 	{
 		instrument = new Part("", CONSTANT, channel);
 		phrase     = new Phrase(0.0);
-		cPhrase = new CPhrase(0.0);
+		cPhrase    = new CPhrase(0.0);
 		instant    = 0;
 	}//end PrettyInstrument - constructor
 
 	public void addChord(double duration, int... notes)
 	{
-		Note[]  tmpNotes = new Note[notes.length];
+		Note[] tmpNotes = new Note[notes.length];
 
 		for (int i = 0; i < notes.length; i++)
 			tmpNotes[i] = new Note(notes[i], duration);
@@ -36,7 +36,7 @@ public class PrettyInstrument
 
 	public void addChord(boolean down, double duration, int... notes)
 	{
-		Note[]  tmpNotes = new Note[notes.length];
+		Note[] tmpNotes = new Note[notes.length];
 
 		if (down)
 		{
