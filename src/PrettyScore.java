@@ -13,6 +13,7 @@ public class PrettyScore
 	public int[]                  tonic;
 	public int[]                  subDominant;
 	public int[]                  dominant;
+	 int instrumentIndex;
 
 	public Scale getScale()
 	{
@@ -22,11 +23,13 @@ public class PrettyScore
 	public PrettyScore(String name)
 	{
 		score = new Score(name);
+		instrumentIndex = 0;
 	}//end PrettyScore
 
-	public void addInstrument(final int CONSTANT, int channel)
+	public void addInstrument(int CONSTANT, int channel)
 	{
-		instruments.add(new PrettyInstrument(CONSTANT, channel));
+		instruments.add(instrumentIndex,new PrettyInstrument(CONSTANT, channel));
+		instrumentIndex++;
 	}//end addInstrument
 
 	public void endScore()

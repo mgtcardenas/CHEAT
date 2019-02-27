@@ -17,7 +17,8 @@ public class PrettyDemo
 
 	public static void main(String[] args) throws IOException
 	{
-		trap();
+		blues();
+		Inst.render("blues");
 	}//end main
 
 	private static double getRandomDuration(int divisions)
@@ -114,9 +115,8 @@ public class PrettyDemo
 	private static void blues() throws IOException
 	{
 		PrettyScore ps = new PrettyScore("blues");
-		ps.addInstrument(ProgramChanges.PIANO, 5);
+		ps.addInstrument(Instruments.PIANO, 0);
 		ps.selectScale("scale_d_blues");
-
 		ps.instruments.get(0).addChord(LONGDURATION, ps.getChord(0)[0]                    );
 		ps.instruments.get(0).addChord(SHORTDURATION, ps.getChord(0)[0]                   );
 		ps.instruments.get(0).addChord(LONGDURATION, ps.getChord(0)[1], ps.getChord(0)[2] );
@@ -138,9 +138,9 @@ public class PrettyDemo
 		bluesCompass(ps, bassSubDominant, highSubDominant, 1);
 		bluesCompass(ps, bassTonic, highTonic, 2            );
 
-		ps.addInstrument(ProgramChanges.PIANO, 2);
+		ps.addInstrument(Instruments.PIANO, 1);
 		ps.instruments.get(1).addSilence(getRandomDuration(1));
-
+		System.out.println(ps.instruments.get(1));
 		for (int i = 0; i < 32; i++)
 		{
 			if   (Math.random() > 0.8)
@@ -149,11 +149,16 @@ public class PrettyDemo
 			    ps.instruments.get(1).addNote(ps.getRandomNote(true), getRandomDuration(3));
 		}//end for - i
 
+		ps.addInstrument(Instruments.DRUM, 7);
+		ps.instruments.get(2).addNote(44, Durations.QUAVER);
+		ps.instruments.get(2).addNote(44, Durations.QUAVER);
+		ps.instruments.get(2).addNote(44, Durations.QUAVER);
+
 		ps.endScore();
 
 		String name = "blues.mid";
 		ps.save(name);
-		Play.mid(name);
+//		Play.mid(name);
 	}//end blues
 
 	//TODO: Change the blues compass so that it takes in the instrument to be played too
@@ -180,18 +185,23 @@ public class PrettyDemo
 	{
 		PrettyScore ps = new PrettyScore("trap");
 		ps.addInstrument(Instruments.DRUM, 9);
-		ps.selectScale("scale_c_ionian");
+		ps.addInstrument(Instruments.ACCORDION, 0);
+		ps.selectScale("scale_c_dorian");
 
 		trapCompass(ps, false, 4);
 		trapCompass(ps, true, 4);
 		trapCompass(ps, false, 4);
 		trapCompass(ps, true, 4);
 		trapCompass(ps, false, 4);
+
+		ps.instruments.get(1).addNote(48, Durations.QUAVER);
+		ps.instruments.get(1).addNote(48, Durations.QUAVER);
+		ps.instruments.get(1).addNote(48, Durations.QUAVER);
 
 		ps.endScore();
 		String name = "trap.mid";
 		ps.save(name);
-		Play.mid(name);
+//		Play.mid(name);
 	}//end trap
 
 	private static void trapCompass(PrettyScore ps, boolean trapFlow, int times)
