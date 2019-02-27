@@ -17,7 +17,7 @@ public class PrettyDemo
 
 	public static void main(String[] args) throws IOException
 	{
-		blues();
+		trap();
 	}//end main
 
 	private static double getRandomDuration(int divisions)
@@ -156,6 +156,7 @@ public class PrettyDemo
 		Play.mid(name);
 	}//end blues
 
+	//TODO: Change the blues compass so that it takes in the instrument to be played too
 	private static void bluesCompass(PrettyScore ps, int[] bass, int[] highs, int times)
 	{
 		for (int i = 0; i < times; i++)
@@ -166,4 +167,50 @@ public class PrettyDemo
 			ps.instruments.get(0).addChord(SHORTDURATION, highs);
 		}//end for - i
 	}//end bluesCompass
+
+	/**
+	 * In order to have percussions, you must use channel 9 and it does not
+	 * matter which instrument you choose, the instrument will be determined
+	 * by the pitch of the note you add. The range of instruments is from
+	 * 27 to 87. I believe 42 or 44 is a hi-hat
+	 *
+	 * @throws IOException - because it is using the scales file...
+	 */
+	private static void trap() throws IOException
+	{
+		PrettyScore ps = new PrettyScore("trap");
+		ps.addInstrument(Instruments.DRUM, 9);
+		ps.selectScale("scale_c_ionian");
+
+		trapCompass(ps, false, 4);
+		trapCompass(ps, true, 4);
+		trapCompass(ps, false, 4);
+		trapCompass(ps, true, 4);
+		trapCompass(ps, false, 4);
+
+		ps.endScore();
+		String name = "trap.mid";
+		ps.save(name);
+		Play.mid(name);
+	}//end trap
+
+	private static void trapCompass(PrettyScore ps, boolean trapFlow, int times)
+	{
+		if (trapFlow)
+		{
+			ps.instruments.get(0).addNote(44, 0.18);
+			ps.instruments.get(0).addNote(44, 0.18);
+			ps.instruments.get(0).addNote(44, 0.18);
+			ps.instruments.get(0).addNote(44, 0.18);
+			ps.instruments.get(0).addNote(44, 0.18);
+			ps.instruments.get(0).addNote(44, 0.18);
+		}
+		else
+		{
+			ps.instruments.get(0).addNote(44, Durations.SQ);
+			ps.instruments.get(0).addNote(44, Durations.SQ);
+			ps.instruments.get(0).addNote(44, Durations.SQ);
+			ps.instruments.get(0).addNote(44, Durations.SQ);
+		}//end if - else
+	}//end trapCompass
 }//end PrettyDemo - class
